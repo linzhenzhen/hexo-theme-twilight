@@ -1,0 +1,55 @@
+<!-- Featured Tags -->
+<% if(config['featured-tags']) { %>
+<section>
+    <!-- no hr -->
+    <h5><a href="<%= config.root %>tags/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        <% site.tags.map(function(tag){  %>
+        <% if(tag.length > config['featured-condition-size']) { %>
+        <a href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>" rel="<%= tag.length %>"><%= tag.name %></a>
+        <% } %>
+        <% }) %>
+    </div>
+</section>
+<% }%>
+
+<!-- Short About -->
+<section class="visible-md visible-lg">
+    <hr><h5><a href="<%= config.root %>about/">ABOUT ME</a></h5>
+    <div class="short-about">
+        <% if(config['sidebar-avatar']) { %>
+        <img src="<%= config['root'] %><%= config['sidebar-avatar'] %>" />
+        <% } %>
+
+        <% if(config['sidebar-about-description']) { %>
+        <p><%= config['sidebar-about-description'] %></p>
+        <% }%>
+
+        <!-- SNS Link -->
+        <ul class="list-inline">
+            <%- partial('_partial/social') %>
+        </ul>
+    </div>
+</section>
+
+<!-- Friends Blog -->
+<% if(config.friends) { %>
+<hr>
+<h5> FRIENDS </h5>
+<% config.friends.forEach(function(friend){ %>
+<div class="media">
+    <a class="media-left media-middle" href="<%= friend.href %>" target="_blank">
+        <img src="<%= config.root %><%= friend.avatar %>" alt="<%= friend.title %>" width="48" class="img-circle">
+    </a>
+    <div class="media-body">
+        <h5 class="media-heading" style="padding-bottom: 0;"><%= friend.title %></h5>
+        <%= friend.desc %>
+    </div>
+</div>
+<% }); %>
+<!--<ul class="list-inline">-->
+    <!--<% config.friends.forEach(function(friend){ %>-->
+    <!--<li><a href="<%= friend.href %>" target="_blank"><%= friend.title %></a></li>-->
+    <!--<% }); %>-->
+<!--</ul>-->
+<% } %>
